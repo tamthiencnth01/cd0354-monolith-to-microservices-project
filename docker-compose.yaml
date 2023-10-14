@@ -1,4 +1,4 @@
-version: "3"
+version: "4"
 services:
   reverseproxy:
       image: reverseproxy
@@ -23,7 +23,7 @@ services:
   backend-feed:
     image: udagram-api-feed
     volumes:
-      - C:/User/Admin/.aws:/root/.aws
+      - $HOME/.aws:/root/.aws
     environment:
       POSTGRES_USERNAME: $POSTGRES_USERNAME
       POSTGRES_PASSWORD: $POSTGRES_PASSWORD 
