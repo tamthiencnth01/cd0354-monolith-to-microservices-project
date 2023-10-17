@@ -1,5 +1,5 @@
 import {Table, Column, Model, PrimaryKey, CreatedAt, UpdatedAt} from 'sequelize-typescript';
-
+// ThienNLNT
 @Table
 export class User extends Model<User> {
   @PrimaryKey

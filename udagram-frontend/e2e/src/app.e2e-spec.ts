@@ -1,8 +1,8 @@
 import { AppPage } from './app.po';
-
+// ThienNLNT
 describe('new App', () => {
   let page: AppPage;
-
+// ThienNLNT
   beforeEach(() => {
     page = new AppPage();
   });
@@ -17,3 +17,4 @@ describe('new App', () => {
     });
   });
 });
+// ThienNLNT

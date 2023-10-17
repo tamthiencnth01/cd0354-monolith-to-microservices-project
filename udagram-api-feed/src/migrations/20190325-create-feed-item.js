@@ -1,4 +1,5 @@
 'use strict';
+// ThienNLNT
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('FeedItem', {

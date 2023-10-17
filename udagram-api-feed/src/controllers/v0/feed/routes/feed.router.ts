@@ -4,19 +4,19 @@ import {NextFunction} from 'connect';
 import * as jwt from 'jsonwebtoken';
 import * as AWS from '../../../../aws';
 import * as c from '../../../../config/config';
-
+// ThienNLNT
 const router: Router = Router();
 
 export function requireAuth(req: Request, res: Response, next: NextFunction) {
   if (!req.headers || !req.headers.authorization) {
     return res.status(401).send({message: 'No authorization headers.'});
   }
-
+// ThienNLNT
   const tokenBearer = req.headers.authorization.split(' ');
   if (tokenBearer.length != 2) {
     return res.status(401).send({message: 'Malformed token.'});
   }
-
+// ThienNLNT
   const token = tokenBearer[1];
   return jwt.verify(token, c.config.jwt.secret, (err, decoded) => {
     if (err) {
@@ -25,7 +25,7 @@ export function requireAuth(req: Request, res: Response, next: NextFunction) {
     return next();
   });
 }
-
+// ThienNLNT
 // Get all feed items
 router.get('/', async (req: Request, res: Response) => {
   const items = await FeedItem.findAndCountAll({order: [['id', 'DESC']]});
@@ -36,7 +36,7 @@ router.get('/', async (req: Request, res: Response) => {
   });
   res.send(items);
 });
-
+// ThienNLNT
 // Get a feed resource
 router.get('/:id',
     async (req: Request, res: Response) => {
@@ -44,7 +44,7 @@ router.get('/:id',
       const item = await FeedItem.findByPk(id);
       res.send(item);
     });
-
+// ThienNLNT
 // Get a signed url to put a new item in the bucket
 router.get('/signed-url/:fileName',
     requireAuth,
@@ -53,7 +53,7 @@ router.get('/signed-url/:fileName',
       const url = AWS.getPutSignedUrl(fileName);
       res.status(201).send({url: url});
     });
-
+// ThienNLNT
 // Create feed with metadata
 router.post('/',
     requireAuth,

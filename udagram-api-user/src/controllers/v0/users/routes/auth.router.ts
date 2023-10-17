@@ -1,18 +1,18 @@
 import {Router, Request, Response} from 'express';
-
+// ThienNLNT
 import {User} from '../models/User';
 import * as c from '../../../../config/config';
-
+// ThienNLNT
 import * as bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
 import {NextFunction} from 'connect';
 
 import * as EmailValidator from 'email-validator';
 import {config} from 'bluebird';
-
+// ThienNLNT
 const router: Router = Router();
 
-
+// ThienNLNT
 async function generatePassword(plainTextPassword: string): Promise<string> {
   const saltRounds = 10;
   const salt = await bcrypt.genSalt(saltRounds);
@@ -36,7 +36,7 @@ export function requireAuth(req: Request, res: Response, next: NextFunction) {
   if (tokenBearer.length != 2) {
     return res.status(401).send({message: 'Malformed token.'});
   }
-
+// ThienNLNT
   const token = tokenBearer[1];
   return jwt.verify(token, c.config.jwt.secret, (err, decoded) => {
     if (err) {
@@ -45,13 +45,13 @@ export function requireAuth(req: Request, res: Response, next: NextFunction) {
     return next();
   });
 }
-
+// ThienNLNT
 router.get('/verification',
     requireAuth,
     async (req: Request, res: Response) => {
       return res.status(200).send({auth: true, message: 'Authenticated.'});
     });
-
+// ThienNLNT
 router.post('/login', async (req: Request, res: Response) => {
   const email = req.body.email;
   const password = req.body.password;
@@ -63,7 +63,7 @@ router.post('/login', async (req: Request, res: Response) => {
   if (!password) {
     return res.status(400).send({auth: false, message: 'Password is required.'});
   }
-
+// ThienNLNT
   const user = await User.findByPk(email);
   if (!user) {
     return res.status(401).send({auth: false, message: 'User was not found..'});
@@ -74,12 +74,12 @@ router.post('/login', async (req: Request, res: Response) => {
   if (!authValid) {
     return res.status(401).send({auth: false, message: 'Password was invalid.'});
   }
-
+// ThienNLNT
   const jwt = generateJWT(user);
   res.status(200).send({auth: true, token: jwt, user: user.short()});
 });
 
-
+// ThienNLNT
 router.post('/', async (req: Request, res: Response) => {
   const email = req.body.email;
   const plainTextPassword = req.body.password;

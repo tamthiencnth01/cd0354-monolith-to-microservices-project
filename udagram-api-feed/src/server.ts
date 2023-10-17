@@ -7,14 +7,14 @@ import {IndexRouter} from './controllers/v0/index.router';
 import bodyParser from 'body-parser';
 import {config} from './config/config';
 import {V0_FEED_MODELS} from './controllers/v0/model.index';
-
+// ThienNLNT
 
 (async () => {
   await sequelize.addModels(V0_FEED_MODELS);
 
   console.debug(`Initialize ${config.database} database connection...`);
   await sequelize.sync();
-
+// ThienNLNT
   const app = express();
   const port = process.env.PORT || 8080;
 
@@ -33,7 +33,7 @@ import {V0_FEED_MODELS} from './controllers/v0/model.index';
     preflightContinue: true,
     origin: '*',
   }));
-
+// ThienNLNT
   app.use('/api/v0/', IndexRouter);
 
   // Root URI call
@@ -41,7 +41,7 @@ import {V0_FEED_MODELS} from './controllers/v0/model.index';
     res.send( '/api/v0/' );
   } );
 
-
+// ThienNLNT
   // Start the Server
   app.listen( port, () => {
     console.log( `server running ${config.url}` );

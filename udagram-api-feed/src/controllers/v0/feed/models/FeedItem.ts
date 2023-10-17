@@ -1,6 +1,6 @@
 import {Table, Column, Model, CreatedAt, UpdatedAt} from 'sequelize-typescript';
 
-
+// ThienNLNT
 @Table
 export class FeedItem extends Model<FeedItem> {
   @Column

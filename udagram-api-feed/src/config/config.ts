@@ -1,3 +1,4 @@
+// ThienNLNT
 export const config = {
   'username': process.env.POSTGRES_USERNAME,
   'password': process.env.POSTGRES_PASSWORD,
